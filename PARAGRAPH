@@ -1,0 +1,4 @@
+a="I am improving my skills in python programming."
+b=a.split()
+print(b)
+print(len(b))
