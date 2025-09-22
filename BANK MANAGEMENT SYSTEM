@@ -1,0 +1,59 @@
+def deposit(accounts,acc_no,amount):
+    accounts[acc_no] += amount
+    print(f"Rs{amount}deposited to Account {acc_no}.")
+def withdraw(accoungt,acc_no,amount):
+    if amount > account[acc_no]:
+        print("Insufficient Balance!")
+    else:
+        account[acc_no] -= amount
+        print(f"Rs{amount}withdraw from account {acc_no}.")
+def transfer(account,from_acc,to_acc,amount):
+    if to_acc not in account:
+        print("Receiver account does not exist!")
+    elif amount > account[from_acc]:
+        print("Insufficient Balance!")
+    else:
+        account[from_acc] -= amount
+        account[to_acc] += amount
+        print(f"Rs{amount} transferred from account {from_acc}to account{to_acc}.")
+def account_menu(account,acc_no):
+    while True:
+        print(f"\n ___account(acc_no) menu___")
+        print("1.Check Balance")
+        print("2.deposit")
+        print("3.withdraw")
+        print("4.transfer")
+        print("5.logout")
+        choice = input("Enter Your choice: ")
+        if choice == '1':
+            print(f"Your balance is: Rs{account[acc_no]}")
+        elif choice == '2':
+            amount = float(input("Enter amount to deposit:"))
+            deposit(account,acc_no,amount)
+        elif choice == '3':
+            amount = float(input("Enter amount to withdraw: "))
+            withdraw(account,acc_no,amount)
+        elif choice == '4':
+            to_acc = input("Enter receiver account number: ")
+            amount = float(input("Enter amount to transfer:"))
+            transfer(account,acc_no,to_acc,amount)
+        elif choice == "5":
+            print("logging out...")
+            break
+        else:
+            print("Invalid choice!.")
+account = {
+    101 :1000.0,
+    102 : 1500.0,
+    103 : 2000.0
+}
+while True:
+    print("\n___WELCOME TO BANK MANAGEMENT SYSTEM___")
+    acc_no = int(input("Enter your account number(or 0 to exit): "))
+    if acc_no == 0:
+        print("Exiting the system.Thank You!")
+        break
+    elif acc_no in account:
+        account_menu(account,acc_no)
+    else:
+        print("Invalid account number.")
